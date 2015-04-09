@@ -1,0 +1,27 @@
+{% extends "BASE.html" %}
+
+{% block rows %}
+    <h1>{{ student.name }}</h1>
+    <form method="POST" action="/students/{{ student.id }}/scores">
+        <input type="hidden" name="_method" value="PUT">
+        <table class="table">
+            <caption>Оценки</caption>
+            <thead>
+            <tr>
+                <th>Предмет</th>
+                <th>Оценка</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for score in student.scores %}
+                <tr>
+                    <td>{{ score.subject }}</td>
+                    <td>{{ score.score}}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-default" onclick="javascript:history.back()">Назад</button>
+    </form>
+{% endblock %}
